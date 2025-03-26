@@ -3,8 +3,6 @@
 set -eu
 set -o pipefail
 
-source "${BASH_SOURCE[0]%/*}/vercomp.sh"
-
 case "$(uname -m)" in
   x86_64)
     arch="x86_64"
