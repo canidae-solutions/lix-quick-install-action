@@ -35,7 +35,7 @@ esac
 # Enable KVM on Linux so NixOS tests can run quickly.
 # Do this early in the process so lix installation detects the KVM feature.
 enable_kvm() {
-  echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-install-nix-action-kvm.rules
+  echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-install-lix-action-kvm.rules
   sudo udevadm control --reload-rules && sudo udevadm trigger --name-match=kvm
 }
 if [[ ("$sys" =~ .*-linux) && ("$ENABLE_KVM" == 'true') ]]; then
@@ -48,7 +48,7 @@ if [ -a /nix ]; then
     echo >&2 "/nix exists but is not writeable, can't set up lix-quick-install-action"
     exit 1
   else
-    rm -rf /nix/var/nix-quick-install-action
+    rm -rf /nix/var/lix-quick-install-action
   fi
 elif [[ "$sys" =~ .*-darwin ]]; then
   disk=$(/usr/bin/stat -f "%Sd" /)
@@ -115,11 +115,11 @@ fi
 
 
 # Populate the nix db
-nix="$(readlink /nix/var/nix-quick-install-action/nix)"
+nix="$(readlink /nix/var/lix-quick-install-action/nix)"
 retries=2
 while true; do
   "$nix/bin/nix-store" \
-    --load-db < /nix/var/nix-quick-install-action/registration && break || true
+    --load-db < /nix/var/lix-quick-install-action/registration && break || true
   ((retries--))
   echo >&2 "Retrying Nix DB registration"
   sleep 2
