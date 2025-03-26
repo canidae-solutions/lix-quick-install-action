@@ -12,9 +12,11 @@ The Lix installation is deterministic – for a given release of this action the
 
 ## Details
 
-The main motivation behind this action is to install Lix as quickly as possible in your GitHub workflow. If that isn't important, you should probably use the [Lix installer action](https://github.com/samueldr/lix-gha-installer-action) instead, which sets up Lix in multi-user mode (daemon mode) using the official Lix installer. If you want to install Nix instead, check out Cachix's [install-nix-action](https://github.com/cachix/install-nix-action).
+The main motivation behind this action is to install Lix as quickly as possible in your GitHub workflow. To achieve this, the installation is minimal: no daemon (ie. single-user Lix), no channels and no `NIX_PATH`. The nix store (`/nix/store`) is owned by the unprivileged runner user. If that's not what you're looking for...
 
-To make this action as quick as possible, the installation is minimal: no nix-daemon, no nix channels and no `NIX_PATH`. The nix store (`/nix/store`) is owned by the unprivileged runner user.
+- Need multi-user Lix? [samueldr/lix-gha-installer-action](https://github.com/samueldr/lix-gha-installer-action) does a full setup of Lix in multi-user mode (daemon mode) using the official Lix installer.
+- Looking for Nix, not Lix? This action is a fork of [nixbuild/nix-quick-install-action](https://github.com/samueldr/lix-gha-installer-action)! We forked it to install Lix instead of Nix - if you need Nix, this one works in exactly the same way.
+- There's also Cachix's [install-nix-action](https://github.com/cachix/install-nix-action) if you need a multi-user Nix install.
 
 The action provides you with a fully working Lix setup, but since no `NIX_PATH` or channels are setup you need to handle this on your own. Flakes is great for this, and works perfectly with this action (see below). [niv](https://github.com/nmattia/niv) should also work fine, but has not been tested yet.
 
