@@ -56,18 +56,10 @@ jobs:
           - ubuntu-24.04-arm
           - macos-15
           - macos-13
-        nix:
-          - version : 2.92.0
-            impl: lix
-          - version : 2.91.1
-            impl: lix
-          - version : 2.90.0
-            impl: lix
-        exclude:
-          - os: ubuntu-24.04-arm
-            nix:
-              version: 2.3.18
-              impl: nix
+        version:
+          - 2.92.0
+          - 2.91.1
+          - 2.90.0
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -77,10 +69,9 @@ jobs:
           name: lix-archives-${{ runner.os }}-${{ runner.arch }}
       - uses: ./
         with:
-          nix_archives_url: file://${{steps.lix-archives.outputs.download-path}}
-          nix_version: ${{ matrix.nix.version }}
-          nix_implementation: ${{ matrix.nix.impl }}
-          nix_on_tmpfs: true
+          lix_archives_url: file://${{steps.lix-archives.outputs.download-path}}
+          lix_version: ${{ matrix.version }}
+          lix_on_tmpfs: true
       - name: Test nix
         run: nix-build -v --version
       - name: Add to store
@@ -99,18 +90,10 @@ jobs:
           - ubuntu-24.04-arm
           - macos-15
           - macos-13
-        nix:
-          - version : 2.92.0
-            impl: lix
-          - version : 2.91.1
-            impl: lix
-          - version : 2.90.0
-            impl: lix
-        exclude:
-          - os: ubuntu-24.04-arm
-            nix:
-              version: 2.3.18
-              impl: nix
+        version:
+          - 2.92.0
+          - 2.91.1
+          - 2.90.0
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -120,10 +103,8 @@ jobs:
           name: lix-archives-${{ runner.os }}-${{ runner.arch }}
       - uses: ./
         with:
-          nix_archives_url: file://${{steps.lix-archives.outputs.download-path}}
-          nix_version: ${{ matrix.nix.version }}
-          nix_implementation: ${{ matrix.nix.impl }}
-          nix_conf: ${{ matrix.nix_conf }}
+          lix_archives_url: file://${{steps.lix-archives.outputs.download-path}}
+          lix_version: ${{ matrix.version }}
       - uses: cachix/cachix-action@v15
         with:
           name: canidae-solutions
@@ -170,8 +151,8 @@ jobs:
           path: /tmp/archives
       - uses: ./
         with:
-          nix_archives_url: file:///tmp/archives
-          nix_version: 2.92.0
+          lix_archives_url: file:///tmp/archives
+          lix_version: 2.92.0
       - uses: cachix/cachix-action@v15
         with:
           name: canidae-solutions
