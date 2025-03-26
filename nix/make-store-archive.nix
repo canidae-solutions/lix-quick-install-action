@@ -18,6 +18,7 @@ runCommand "lix-${lix.version}-archive"
 
     closureInfo = closureInfo { rootPaths = [ lix ]; };
     fileName = "lix-${lix.version}-${system}.tar.zstd";
+    inherit (lix) version;
   }
   ''
     mkdir -p $out root/nix/var/{nix,lix-quick-install-action}

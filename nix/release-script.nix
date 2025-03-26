@@ -22,10 +22,12 @@ let
     lib.concatMapStringsSep "\n" (
       system:
       let
-        inherit (lib) attrNames naturalSort reverseList;
+        inherit (lib) attrValues naturalSort reverseList;
 
         mkMarkdownList = map (s: "- ${s}");
-        sortedVersions = reverseList (naturalSort (attrNames (lixArchivesFor system)));
+        sortedVersions = reverseList (
+          naturalSort (map (archive: archive.version) (attrValues (lixArchivesFor system)))
+        );
       in
       ''
         ## Supported Lix versions on ${system}:
