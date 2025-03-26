@@ -4,7 +4,7 @@ author: canidae solutions
 
 inputs:
 
-  nix_version:
+  lix_version:
     required: true
     default: "2.92.0"
     description: |
@@ -16,7 +16,7 @@ inputs:
       supported by the version of lix-quick-install-action you're using by
       going to https://github.com/canidae-solutions/lix-quick-install-action/releases.
 
-  nix_conf:
+  lix_conf:
     required: false
     description: |
       If set, this configuration is written to XDG_CONFIG_HOME/nix/nix.conf,
@@ -30,7 +30,7 @@ inputs:
     description: |
       Configure Lix to use the specified token when fetching from GitHub.
 
-  nix_on_tmpfs:
+  lix_on_tmpfs:
     required: true
     default: false
     description: |
@@ -40,7 +40,7 @@ inputs:
       database, logs etc) will be considerably less than the available memory.
       This option does nothing on macOS runners.
 
-  nix_archives_url:
+  lix_archives_url:
     required: false
     description: |
       Don't use. For bootstrapping purposes only.
@@ -59,11 +59,10 @@ runs:
       shell: bash
       env:
         RELEASE_FILE: ${{ github.action_path }}/RELEASE
-        NIX_IMPLEMENTATION: ${{ inputs.nix_implementation }}
-        NIX_VERSION: ${{ inputs.nix_version }}
-        NIX_CONF: ${{ inputs.nix_conf }}
-        NIX_ARCHIVES_URL: ${{ inputs.nix_archives_url }}
-        NIX_ON_TMPFS: ${{ inputs.nix_on_tmpfs }}
+        LIX_VERSION: ${{ inputs.lix_version }}
+        LIX_CONF: ${{ inputs.lix_conf }}
+        LIX_ARCHIVES_URL: ${{ inputs.lix_archives_url }}
+        LIX_ON_TMPFS: ${{ inputs.lix_on_tmpfs }}
         GITHUB_ACCESS_TOKEN: ${{ inputs.github_access_token }}
         ENABLE_KVM: ${{ inputs.enable_kvm }}
 

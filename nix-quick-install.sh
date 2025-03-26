@@ -65,7 +65,7 @@ elif [[ "$sys" =~ .*-darwin ]]; then
 EOF
 else
   sudo install -d -o "$USER" /nix
-  if [[ "$NIX_ON_TMPFS" == "true" || "$NIX_ON_TMPFS" == "True" || "$NIX_ON_TMPFS" == "TRUE" ]]; then
+  if [[ "$LIX_ON_TMPFS" == "true" || "$LIX_ON_TMPFS" == "True" || "$LIX_ON_TMPFS" == "TRUE" ]]; then
     sudo mount -t tmpfs -o size=90%,mode=0755,gid="$(id -g)",uid="$(id -u)" tmpfs /nix
   fi
 fi
@@ -78,7 +78,7 @@ else
   tar=tar
 fi
 rel="$(head -n1 "$RELEASE_FILE")"
-url="${NIX_ARCHIVES_URL:-https://github.com/canidae-solutions/lix-quick-install-action/releases/download/$rel}/lix-$NIX_VERSION-$sys.tar.zstd"
+url="${LIX_ARCHIVES_URL:-https://github.com/canidae-solutions/lix-quick-install-action/releases/download/$rel}/lix-$LIX_VERSION-$sys.tar.zstd"
 
 echo >&2 "Fetching lix archives from $url"
 case "$url" in
@@ -92,24 +92,24 @@ case "$url" in
 esac
 
 # Setup nix.conf
-NIX_CONF_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/nix/nix.conf"
-mkdir -p "$(dirname "$NIX_CONF_FILE")"
-touch "$NIX_CONF_FILE"
-if [ -n "${NIX_CONF:-}" ]; then
-  printenv NIX_CONF > "$NIX_CONF_FILE"
+LIX_CONF_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/nix/nix.conf"
+mkdir -p "$(dirname "$LIX_CONF_FILE")"
+touch "$LIX_CONF_FILE"
+if [ -n "${LIX_CONF:-}" ]; then
+  printenv LIX_CONF > "$LIX_CONF_FILE"
 fi
 
 # Setup GitHub access token
 if [[ -n "${GITHUB_ACCESS_TOKEN:-}" ]]; then
-  echo >>"$NIX_CONF_FILE" \
+  echo >>"$LIX_CONF_FILE" \
     "access-tokens = github.com=$GITHUB_ACCESS_TOKEN"
 fi
 
 # Setup Flakes
-if vergt "$NIX_VERSION" "2.13"; then
-  echo >>"$NIX_CONF_FILE" \
+if vergt "$LIX_VERSION" "2.13"; then
+  echo >>"$LIX_CONF_FILE" \
     "experimental-features = nix-command flakes"
-  echo >>"$NIX_CONF_FILE" \
+  echo >>"$LIX_CONF_FILE" \
     "accept-flake-config = true"
 fi
 
