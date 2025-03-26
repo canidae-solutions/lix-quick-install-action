@@ -7,9 +7,8 @@ The Lix installation is deterministic – for a given release of this action the
 - Supports all Linux and MacOS runners
 - Single-user installation (no `nix-daemon`)
 - Installs in ≈ 1 second on Linux, ≈ 5 seconds on MacOS
-- Allows selecting Lix version via the `nix_version` input
-- Allows selecting Nix implementation (either Lix or Nix) via the `nix_implementation` input
-- Allows specifying `nix.conf` contents via the `nix_conf` input
+- Allows selecting Lix version via the `lix_version` input
+- Allows specifying `nix.conf` contents via the `lix_conf` input
 
 ## Details
 
@@ -21,7 +20,7 @@ The action provides you with a fully working Lix setup, but since no `NIX_PATH` 
 
 ## Inputs
 
-See [action.yml](action.yml) for documentation of the available inputs. The available Lix and Nix versions are listed in the [release notes](https://github.com/canidae-solutions/lix-quick-install-action/releases/latest).
+See [action.yml](action.yml) for documentation of the available inputs. The available Lix versions are listed in the [release notes](https://github.com/canidae-solutions/lix-quick-install-action/releases/latest).
 
 ## Usage
 
