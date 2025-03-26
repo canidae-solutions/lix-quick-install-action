@@ -106,12 +106,10 @@ if [[ -n "${GITHUB_ACCESS_TOKEN:-}" ]]; then
 fi
 
 # Setup Flakes
-if vergt "$LIX_VERSION" "2.13"; then
-  echo >>"$LIX_CONF_FILE" \
-    "experimental-features = nix-command flakes"
-  echo >>"$LIX_CONF_FILE" \
-    "accept-flake-config = true"
-fi
+echo >>"$LIX_CONF_FILE" \
+  "experimental-features = nix-command flakes"
+echo >>"$LIX_CONF_FILE" \
+  "accept-flake-config = true"
 
 
 # Populate the nix db
