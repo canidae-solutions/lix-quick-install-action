@@ -6,6 +6,7 @@ in
 
 {
   pkgs ? nixpkgs,
+  system ? pkgs.system,
 }:
 
 let
@@ -15,13 +16,13 @@ rec {
   # The nixpkgs set we build everything with, in case you wanted that.
   inherit pkgs;
 
-  # All versions of Lix supported by the running system.
-  lixVersions = archives.lixVersionsFor pkgs.system;
+  # All versions of Lix supported by the given system (default: the system being built on).
+  lixVersions = archives.lixVersionsFor system;
   # Archives for all supported Lix versions.
-  lixArchives = archives.lixArchivesFor pkgs.system;
+  lixArchives = archives.lixArchivesFor system;
 
-  # All Lix archives for the running system.
-  combinedArchives = archives.combinedArchivesFor pkgs.system;
+  # All Lix archives for the given system.
+  combinedArchives = archives.combinedArchivesFor system;
 
   # The release script used in CI/CD to cut a new release.
   releaseScript = pkgs.callPackage ./nix/release-script.nix {
