@@ -115,10 +115,10 @@ fi
 
 
 # Populate the nix db
-nix="$(readlink /nix/var/lix-quick-install-action/nix)"
+lix="$(readlink /nix/var/lix-quick-install-action/lix)"
 retries=2
 while true; do
-  "$nix/bin/nix-store" \
+  "$lix/bin/nix-store" \
     --load-db < /nix/var/lix-quick-install-action/registration && break || true
   ((retries--))
   echo >&2 "Retrying Nix DB registration"
@@ -127,8 +127,8 @@ done
 
 
 # Install lix in profile
-MANPATH= . "$nix/etc/profile.d/nix.sh"
-"$nix/bin/nix-env" -i "$nix"
+MANPATH= . "$lix/etc/profile.d/nix.sh"
+"$lix/bin/nix-env" -i "$lix"
 
 # Certificate bundle is not detected by nix.sh on macOS.
 if [ -z "${NIX_SSL_CERT_FILE:-}" -a -e "/etc/ssl/cert.pem" ]; then
