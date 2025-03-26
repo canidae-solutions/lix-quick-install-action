@@ -16,16 +16,6 @@ inputs:
       supported by the version of lix-quick-install-action you're using by
       going to https://github.com/canidae-solutions/lix-quick-install-action/releases.
 
-  nix_implementation:
-    required: false
-    default: "lix"
-    description: |
-      The implementation of Nix to be used.
-
-      Supported implementations:
-      - lix (default): https://lix.systems/
-      - nix: https://nixos.org/
-
   nix_conf:
     required: false
     description: |

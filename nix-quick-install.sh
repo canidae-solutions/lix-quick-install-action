@@ -78,7 +78,7 @@ else
   tar=tar
 fi
 rel="$(head -n1 "$RELEASE_FILE")"
-url="${NIX_ARCHIVES_URL:-https://github.com/canidae-solutions/lix-quick-install-action/releases/download/$rel}/$NIX_IMPLEMENTATION-$NIX_VERSION-$sys.tar.zstd"
+url="${NIX_ARCHIVES_URL:-https://github.com/canidae-solutions/lix-quick-install-action/releases/download/$rel}/lix-$NIX_VERSION-$sys.tar.zstd"
 
 echo >&2 "Fetching lix archives from $url"
 case "$url" in
