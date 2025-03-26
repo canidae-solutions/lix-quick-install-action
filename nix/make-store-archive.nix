@@ -8,6 +8,9 @@
 
 system: lix:
 
+# Produces an archive for a Lix version that gets installed on runners with the action. The archive contains a minimal
+# Nix store containing just the closure over the Lix derivation and some supporting files to setup the Nix store
+# database, and get Lix installed in the global profile.
 runCommand "lix-${lix.version}-archive"
   {
     buildInputs = [

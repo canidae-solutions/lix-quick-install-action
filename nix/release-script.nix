@@ -18,6 +18,8 @@ let
     "aarch64-darwin"
   ];
 
+  # Generate a markdown file containing a list of Lix versions that the action supports, for all supported systems
+  # listed above. This gets included into the release's description.
   supportedVersions = writeText "supportedVersions" (
     lib.concatMapStringsSep "\n" (
       system:
@@ -36,6 +38,7 @@ let
     ) supportedSystems
   );
 
+  # Produce a list of all Lix archives for all systems, to pass to the GitHub CLI when making a release.
   releaseAssets =
     let
       allSystemsArchives = lib.concatMap (
@@ -45,6 +48,9 @@ let
     lib.concatMapStringsSep " " (archive: "\"$lix_archives/${archive.fileName}\"") allSystemsArchives;
 in
 
+# Create a shell script to cut a new release. The script runs at the end of the CI/CD workflow, and creates a new tagged
+# release if the first line of RELEASE contains a newer version than the last release. The release notes come from the
+# rest of RELEASE and the supportedVersions list above, and all Lix archives for all systems are included as assets.
 writeShellApplication {
   name = "release";
 
