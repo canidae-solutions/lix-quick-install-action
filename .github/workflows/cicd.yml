@@ -63,14 +63,6 @@ jobs:
             impl: lix
           - version : 2.90.0
             impl: lix
-          - version: 2.3.18
-            impl: nix
-          - version: 2.26.1
-            impl: nix
-          - version: 2.25.5
-            impl: nix
-          - version: 2.24.12
-            impl: nix
         exclude:
           - os: ubuntu-24.04-arm
             nix:
@@ -114,14 +106,6 @@ jobs:
             impl: lix
           - version : 2.90.0
             impl: lix
-          - version: 2.3.18
-            impl: nix
-          - version: 2.26.1
-            impl: nix
-          - version: 2.25.5
-            impl: nix
-          - version: 2.24.12
-            impl: nix
         exclude:
           - os: ubuntu-24.04-arm
             nix:
