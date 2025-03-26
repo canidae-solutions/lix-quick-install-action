@@ -3,7 +3,6 @@ description: Quickly installs Lix in unprivileged single-user mode
 author: canidae solutions
 
 inputs:
-
   lix_version:
     required: true
     default: "2.92.0"
@@ -46,10 +45,10 @@ inputs:
       Don't use. For bootstrapping purposes only.
 
   enable_kvm:
-    description: 'Enable KVM for hardware-accelerated virtualization on Linux, if available.'
+    description: |
+      Enable KVM for hardware-accelerated virtualization on Linux, if available.
     required: false
     default: true
-
 
 runs:
   using: "composite"
