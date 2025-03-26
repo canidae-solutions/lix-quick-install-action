@@ -47,7 +47,7 @@ jobs:
 
 ### Flakes
 
-These settings are always set by default (except on Nix 2.3):
+These settings are always set by default:
 
 ```conf
 experimental-features = nix-command flakes
@@ -64,12 +64,12 @@ You can use the [Cachix action](https://github.com/marketplace/actions/cachix) t
 
 ### Using specific Lix versions locally
 
-Locally, you can use this repository's flake to build or run any of the versions of Lix that this action supports. This is very convenient if you quickly need to compare the behavior between different Lix versions.
+Locally, you can use this repository to build or run any of the versions of Lix that this action supports. This is very convenient if you quickly need to compare the behavior between different Lix versions.
 
 Build a specific version of Lix like this:
 
 ```
-$ nix build github:canidae-solutions/lix-quick-install-action#lix-2_92_0
+$ nix build -f https://github.com/canidae-solutions/lix-quick-install-action/archive/refs/heads/main.zip lixVersions.v2_92_0
 
 $ ./result/bin/nix --version
 nix (Lix, like Nix) 2.92.0
@@ -78,80 +78,21 @@ nix (Lix, like Nix) 2.92.0
 With `nix run` you can also directly run Lix like this:
 
 ```
-$ nix run github:canidae-solutions/lix-quick-install-action#lix-2_92_0 -- --version
+$ nix run -f https://github.com/canidae-solutions/lix-quick-install-action/archive/refs/heads/main.zip lixVersions.v2_92_0 -- --version
 nix (Lix, like Nix) 2.92.0
 ```
 
 List all available Lix versions like this:
 
 ```
-$ nix flake show --all-systems github:canidae-solutions/lix-quick-install-action/v1
-github:canidae-solutions/lix-quick-install-action/c27a9701e6204006a378fe7c97425b5463ca2b09
-├───apps
-│   ├───aarch64-darwin
-│   │   └───release: app
-│   ├───aarch64-linux
-│   │   └───release: app
-│   ├───x86_64-darwin
-│   │   └───release: app
-│   └───x86_64-linux
-│       └───release: app
-├───defaultApp
-│   ├───aarch64-darwin: app
-│   ├───aarch64-linux: app
-│   ├───x86_64-darwin: app
-│   └───x86_64-linux: app
-├───overlays
-│   ├───aarch64-darwin: Nixpkgs overlay
-│   ├───aarch64-linux: Nixpkgs overlay
-│   ├───x86_64-darwin: Nixpkgs overlay
-│   └───x86_64-linux: Nixpkgs overlay
-└───packages
-    ├───aarch64-darwin
-    │   ├───lix-2_90_0: package 'lix-2.90.0' - 'Powerful package manager that makes package management reliable and reproducible'
-    │   ├───lix-2_91_1: package 'lix-2.91.1' - 'Powerful package manager that makes package management reliable and reproducible'
-    │   ├───lix-2_92_0: package 'lix-2.92.0'
-    │   ├───nix-2_24_12: package 'nix-2.24.12' - 'Powerful package manager that makes package management reliable and reproducible'
-    │   ├───nix-2_25_5: package 'nix-2.25.5' - 'Powerful package manager that makes package management reliable and reproducible'
-    │   ├───nix-2_26_1: package 'nix-2.26.1' - 'The Nix package manager'
-    │   ├───nix-2_3_18: package 'nix-2.3.18' - 'Powerful package manager that makes package management reliable and reproducible'
-    │   ├───nix-archives: package 'nix-archives'
-    │   └───release: package 'release'
-    ├───aarch64-linux
-    │   ├───lix-2_90_0: package 'lix-2.90.0' - 'Powerful package manager that makes package management reliable and reproducible'
-    │   ├───lix-2_91_1: package 'lix-2.91.1' - 'Powerful package manager that makes package management reliable and reproducible'
-    │   ├───lix-2_92_0: package 'lix-2.92.0'
-    │   ├───nix-2_24_12: package 'nix-2.24.12' - 'Powerful package manager that makes package management reliable and reproducible'
-    │   ├───nix-2_25_5: package 'nix-2.25.5' - 'Powerful package manager that makes package management reliable and reproducible'
-    │   ├───nix-2_26_1: package 'nix-2.26.1' - 'The Nix package manager'
-    │   ├───nix-archives: package 'nix-archives'
-    │   └───release: package 'release'
-    ├───x86_64-darwin
-    │   ├───lix-2_90_0: package 'lix-2.90.0' - 'Powerful package manager that makes package management reliable and reproducible'
-    │   ├───lix-2_91_1: package 'lix-2.91.1' - 'Powerful package manager that makes package management reliable and reproducible'
-    │   ├───lix-2_92_0: package 'lix-2.92.0'
-    │   ├───nix-2_24_12: package 'nix-2.24.12' - 'Powerful package manager that makes package management reliable and reproducible'
-    │   ├───nix-2_25_5: package 'nix-2.25.5' - 'Powerful package manager that makes package management reliable and reproducible'
-    │   ├───nix-2_26_1: package 'nix-2.26.1' - 'The Nix package manager'
-    │   ├───nix-2_3_18: package 'nix-2.3.18' - 'Powerful package manager that makes package management reliable and reproducible'
-    │   ├───nix-archives: package 'nix-archives'
-    │   └───release: package 'release'
-    └───x86_64-linux
-        ├───lix-2_90_0: package 'lix-2.90.0' - 'Powerful package manager that makes package management reliable and reproducible'
-        ├───lix-2_91_1: package 'lix-2.91.1' - 'Powerful package manager that makes package management reliable and reproducible'
-        ├───lix-2_92_0: package 'lix-2.92.0'
-        ├───nix-2_24_12: package 'nix-2.24.12' - 'Powerful package manager that makes package management reliable and reproducible'
-        ├───nix-2_25_5: package 'nix-2.25.5' - 'Powerful package manager that makes package management reliable and reproducible'
-        ├───nix-2_26_1: package 'nix-2.26.1' - 'The Nix package manager'
-        ├───nix-2_3_18: package 'nix-2.3.18' - 'Powerful package manager that makes package management reliable and reproducible'
-        ├───nix-archives: package 'nix-archives'
-        └───release: package 'release'
+$ nix eval -f https://github.com/canidae-solutions/lix-quick-install-action/archive/refs/heads/main.zip lixVersions --apply builtins.attrNames
+[ "v2_90_0" "v2_91_1" "v2_92_0" ]
 ```
 
 If you want to make sure that the version of Lix you're trying to build hasn't been removed in the latest revision of `lix-quick-install-action`, you can specify a specific release of `lix-quick-install-action` like this:
 
 ```
-$ nix build github:canidae-solutions/lix-quick-install-action/v1#lix-2_20_0
+$ nix build -f https://github.com/canidae-solutions/lix-quick-install-action/archive/refs/heads/v1.zip lixVersions.v2_92_0
 ```
 
-Note that we've added `/v1` to the flake url above.
+Note that we've added `v1.zip` instead of `main.zip` to the url above.
