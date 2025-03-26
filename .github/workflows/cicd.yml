@@ -27,7 +27,7 @@ jobs:
         with:
           lix_archives_url: https://github.com/canidae-solutions/lix-quick-install-action/releases/download/v2.0.0
           lix_version: 2.92.0
-      - uses: cachix/cachix-action@v15
+      - uses: cachix/cachix-action@v16
         with:
           name: canidae-solutions
           signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
@@ -105,7 +105,7 @@ jobs:
         with:
           lix_archives_url: file://${{steps.lix-archives.outputs.download-path}}
           lix_version: ${{ matrix.version }}
-      - uses: cachix/cachix-action@v15
+      - uses: cachix/cachix-action@v16
         with:
           name: canidae-solutions
           signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
@@ -153,7 +153,7 @@ jobs:
         with:
           lix_archives_url: file:///tmp/archives
           lix_version: 2.92.0
-      - uses: cachix/cachix-action@v15
+      - uses: cachix/cachix-action@v16
         with:
           name: canidae-solutions
           signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
