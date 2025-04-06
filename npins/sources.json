@@ -1,22 +1,5 @@
 {
   "pins": {
-    "lix-2_92": {
-      "type": "GitRelease",
-      "repository": {
-        "type": "Forgejo",
-        "server": "https://git.lix.systems/",
-        "owner": "lix-project",
-        "repo": "lix"
-      },
-      "pre_releases": false,
-      "version_upper_bound": null,
-      "release_prefix": null,
-      "submodules": false,
-      "version": "2.92.0",
-      "revision": "2837da71ec1588c1187d2e554719b15904a46c8b",
-      "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/2.92.0.tar.gz",
-      "hash": "126vm9m517gwfqdy1c4zghzk3w3xfahhhjawkqmkjxrq9w08h8h8"
-    },
     "nixpkgs": {
       "type": "Channel",
       "name": "nixpkgs-unstable",
