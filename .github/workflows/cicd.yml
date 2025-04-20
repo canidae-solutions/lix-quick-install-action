@@ -36,6 +36,7 @@ jobs:
         run: |
           sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
           sudo sysctl -w kernel.apparmor_restrict_unprivileged_unconfined=0
+      - run: nix --version
       - name: Build Lix archives
         id: build-lix-archives
         run: |
