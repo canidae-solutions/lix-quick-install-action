@@ -14,8 +14,6 @@ let
   supportedSystems = [
     "x86_64-linux"
     "aarch64-linux"
-    "x86_64-darwin"
-    "aarch64-darwin"
   ];
 
   # Generate a markdown file containing a list of Lix versions that the action supports, for all supported systems

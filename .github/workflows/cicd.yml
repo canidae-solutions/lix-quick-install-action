@@ -18,8 +18,6 @@ jobs:
         os:
           - ubuntu-22.04
           - ubuntu-24.04-arm
-          - macos-15
-          - macos-13
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -27,10 +25,6 @@ jobs:
         with:
           lix_archives_url: https://github.com/canidae-solutions/lix-quick-install-action/releases/download/v2.0.0
           lix_version: 2.92.0
-      - uses: cachix/cachix-action@v16
-        with:
-          name: canidae-solutions
-          signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
       - name: Fix Lix tests
         if: matrix.os == 'ubuntu-24.04-arm'
         run: |
@@ -54,8 +48,6 @@ jobs:
         os:
           - ubuntu-22.04
           - ubuntu-24.04-arm
-          - macos-15
-          - macos-13
         version:
           - 2.92.0
           - 2.91.1
@@ -80,54 +72,11 @@ jobs:
           echo "$RANDOM" > "$file"
           path="$(nix-store --add "./$file")"
 
-  test-cachix:
-    needs: build
-    strategy:
-      fail-fast: true
-      matrix:
-        os:
-          - ubuntu-22.04
-          - ubuntu-24.04-arm
-          - macos-15
-          - macos-13
-        version:
-          - 2.92.0
-          - 2.91.1
-          - 2.90.0
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        id: lix-archives
-        with:
-          name: lix-archives-${{ runner.os }}-${{ runner.arch }}
-      - uses: ./
-        with:
-          lix_archives_url: file://${{steps.lix-archives.outputs.download-path}}
-          lix_version: ${{ matrix.version }}
-      - uses: cachix/cachix-action@v16
-        with:
-          name: canidae-solutions
-          signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
-          skipPush: true
-      - name: Verify nix config
-        run: |
-          if ! egrep -q "^substituters = https://cache.nixos.org https://canidae-solutions.cachix.org$" "$HOME/.config/nix/nix.conf"; then
-            echo "Invalid substituters config"
-            exit 1
-          fi
-      - name: Push to Cachix
-        if: github.event_name == 'push' && github.repository_owner == 'canidae-solutions'
-        run: |
-          dd if=/dev/urandom of=random count=1
-          cachix push canidae-solutions "$(nix add-to-store random)"
-
   release:
     runs-on: ubuntu-latest
     needs:
       - build
       - test
-      - test-cachix
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     permissions:
       contents: write
@@ -141,22 +90,10 @@ jobs:
         with:
           name: lix-archives-Linux-ARM64
           path: /tmp/archives
-      - uses: actions/download-artifact@v4
-        with:
-          name: lix-archives-macOS-X64
-          path: /tmp/archives
-      - uses: actions/download-artifact@v4
-        with:
-          name: lix-archives-macOS-ARM64
-          path: /tmp/archives
       - uses: ./
         with:
           lix_archives_url: file:///tmp/archives
           lix_version: 2.92.0
-      - uses: cachix/cachix-action@v16
-        with:
-          name: canidae-solutions
-          signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
       - name: Build release script
         run: nix build -f default.nix releaseScript
       - name: Release if needed
