@@ -1,3 +1,7 @@
+# fork info
+
+this fork exists so we can bootstrap our own binaries, to use this action outside HMG or contribute, [go to the upstream lix-quick-install-action](https://github.com/canidae-solutions/lix-quick-install-action)
+
 # lix quick install action
 
 [![ci/cd pipeline static](https://img.shields.io/github/actions/workflow/status/canidae-solutions/lix-quick-install-action/cicd.yml)](https://github.com/canidae-solutions/lix-quick-install-action/actions/workflows/cicd.yml) [![latest release](https://img.shields.io/github/v/release/canidae-solutions/lix-quick-install-action)](https://github.com/canidae-solutions/lix-quick-install-action/releases/latest) ![trans rights](https://pride-badges.pony.workers.dev/static/v1?label=trans%20rights&stripeWidth=6&stripeColors=5BCEFA,F5A9B8,FFFFFF,F5A9B8,5BCEFA)

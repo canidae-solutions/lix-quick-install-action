@@ -18,9 +18,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: canidae-solutions/lix-quick-install-action@v2
+      - uses: handelsblattmediagroup/lix-quick-install-action@v2
         with:
-          lix_archives_url: https://github.com/canidae-solutions/lix-quick-install-action/releases/download/v2.0.0
+          lix_archives_url: https://github.com/handelsblattmediagroup/lix-quick-install-action/releases/download/v2.0.0
           lix_version: 2.92.0
       - name: Fix Lix tests
         if: matrix.os == 'ubuntu-24.04-arm'
