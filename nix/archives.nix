@@ -3,9 +3,7 @@
   callPackage,
   pkgs,
 
-  editline,
-  lixVersions,
-  ncurses,
+  lixPackageSets,
 }:
 
 let
@@ -38,22 +36,12 @@ let
     let
       # The Lix repo doesn't give us a good way to override nixpkgs when consuming it from outside a flake, so we can
       # do some hacks with the overlay instead.
-      lix_2_92 = ((import pins.lix-2_92).overlays.default pkgs pkgs).nix.override {
-        # From <https://git.lix.systems/lix-project/nixos-module/pulls/59>:
-        # Do not override editline-lix
-        # according to the upstream packaging.
-        # This was fixed in nixpkgs directly.
-        editline-lix = editline.overrideAttrs (old: {
-          propagatedBuildInputs = (old.propagatedBuildInputs or [ ]) ++ [ ncurses ];
-        });
-      };
-
       lix_2_93 = ((import pins.lix-2_93).overlays.default pkgs pkgs).nix;
     in
     [
       lix_2_93
-      lix_2_92
-      lixVersions.lix_2_91
+      lixPackageSets.lix_2_92.lix
+      lixPackageSets.lix_2_91.lix
     ];
 in
 rec {
