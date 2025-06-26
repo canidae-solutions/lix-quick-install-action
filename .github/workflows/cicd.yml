@@ -18,7 +18,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: handelsblattmediagroup/lix-quick-install-action@v2
+      - uses: handelsblattmediagroup/lix-quick-install-action@v2.0.0
         with:
           lix_archives_url: https://github.com/handelsblattmediagroup/lix-quick-install-action/releases/download/v2.0.0
           lix_version: 2.92.0
