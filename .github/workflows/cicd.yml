@@ -18,10 +18,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: handelsblattmediagroup/lix-quick-install-action@v2
+      - uses: handelsblattmediagroup/lix-quick-install-action@v3.0.2
         with:
           lix_archives_url: https://github.com/handelsblattmediagroup/lix-quick-install-action/releases/download/v2.0.0
-          lix_version: 2.92.0
+          lix_version: 2.93.1
       - name: Fix Lix tests
         if: matrix.os == 'ubuntu-24.04-arm'
         run: |
@@ -46,9 +46,9 @@ jobs:
           - ubuntu-22.04
           - ubuntu-24.04-arm
         version:
-          - 2.92.0
-          - 2.91.1
-          - 2.90.0
+          - 2.93.1
+          - 2.92.2
+          - 2.91.2
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -89,7 +89,7 @@ jobs:
       - uses: ./
         with:
           lix_archives_url: file:///tmp/archives
-          lix_version: 2.92.0
+          lix_version: 2.93.1
       - name: Build release script
         run: nix build -f default.nix releaseScript
       - name: Release if needed

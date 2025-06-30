@@ -30,7 +30,7 @@ let
         );
       in
       ''
-        ## Supported Lix versions on ${system}:
+        ## supported lix versions on ${system}:
         ${lib.concatStringsSep "\n" (mkMarkdownList sortedVersions)}
       ''
     ) supportedSystems

@@ -1,9 +1,5 @@
-v2.0.0
+v3.0.2
 
-## Changes
-- Drop support for Nix
-  - Remove `nix-implementation` option
-- Rename all options in action to be prefixed with `lix` instead of `nix`, to reflect support
-- Remove the flake in the repo; switch to a classic `default.nix`-based project
-  - Dependency management now done with [npins](https://github.com/andir/npins)
-- Restructure internal release process to be easier to maintain
+## changes
+- update all lix versions to the latest patch release
+  - includes fixes for recent [security disclosure](https://lix.systems/blog/2025-06-24-lix-cves/)
