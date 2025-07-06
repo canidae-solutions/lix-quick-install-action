@@ -25,8 +25,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: canidae-solutions/lix-quick-install-action@v3
         with:
-          lix_archives_url: https://github.com/canidae-solutions/lix-quick-install-action/releases/download/v3.0.2
-          lix_version: 2.93.1
+          lix_archives_url: https://github.com/canidae-solutions/lix-quick-install-action/releases/download/v3.0.1
+          lix_version: 2.93.0
       - uses: cachix/cachix-action@v16
         with:
           name: canidae-solutions
@@ -57,9 +57,9 @@ jobs:
           - macos-15
           - macos-13
         version:
-          - 2.93.1
-          - 2.92.2
-          - 2.91.2
+          - 2.93.2
+          - 2.92.3
+          - 2.91.3
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -91,9 +91,9 @@ jobs:
           - macos-15
           - macos-13
         version:
-          - 2.93.1
-          - 2.92.2
-          - 2.91.2
+          - 2.93.2
+          - 2.92.3
+          - 2.91.3
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -152,7 +152,7 @@ jobs:
       - uses: ./
         with:
           lix_archives_url: file:///tmp/archives
-          lix_version: 2.93.1
+          lix_version: 2.93.2
       - uses: cachix/cachix-action@v16
         with:
           name: canidae-solutions
