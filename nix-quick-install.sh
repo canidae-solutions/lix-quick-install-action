@@ -93,9 +93,6 @@ esac
 LIX_CONF_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/nix/nix.conf"
 mkdir -p "$(dirname "$LIX_CONF_FILE")"
 touch "$LIX_CONF_FILE"
-if [ -n "${LIX_CONF:-}" ]; then
-  printenv LIX_CONF > "$LIX_CONF_FILE"
-fi
 
 # Setup GitHub access token
 if [[ -n "${GITHUB_ACCESS_TOKEN:-}" ]]; then
@@ -109,6 +106,9 @@ echo >>"$LIX_CONF_FILE" \
 echo >>"$LIX_CONF_FILE" \
   "accept-flake-config = true"
 
+if [ -n "${LIX_CONF:-}" ]; then
+  printenv LIX_CONF >> "$LIX_CONF_FILE"
+fi
 
 # Populate the nix db
 lix="$(readlink /nix/var/lix-quick-install-action/lix)"
