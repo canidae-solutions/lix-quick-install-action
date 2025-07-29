@@ -57,7 +57,7 @@ jobs:
           - macos-15
           - macos-13
         version:
-          - 2.93.2
+          - 2.93.3
           - 2.92.3
           - 2.91.3
     runs-on: ${{ matrix.os }}
@@ -91,7 +91,7 @@ jobs:
           - macos-15
           - macos-13
         version:
-          - 2.93.2
+          - 2.93.3
           - 2.92.3
           - 2.91.3
     runs-on: ${{ matrix.os }}
@@ -152,7 +152,7 @@ jobs:
       - uses: ./
         with:
           lix_archives_url: file:///tmp/archives
-          lix_version: 2.93.2
+          lix_version: 2.93.3
       - uses: cachix/cachix-action@v16
         with:
           name: canidae-solutions
