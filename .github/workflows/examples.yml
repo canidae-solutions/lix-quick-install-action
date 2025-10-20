@@ -1,0 +1,45 @@
+name: Examples
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  version-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: canidae-solutions/lix-quick-install-action@v3
+      - run: nix --version
+
+  flakes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: canidae-solutions/lix-quick-install-action@v3
+      - name: nix run
+        run: nix run ./examples/flakes
+
+  npins:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: canidae-solutions/lix-quick-install-action@v3
+      - name: nix run
+        run: nix run -f examples/npins
+
+  niv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: canidae-solutions/lix-quick-install-action@v3
+      - name: nix run
+        run: nix run -f examples/niv
+
+  pinned-fetchurl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: canidae-solutions/lix-quick-install-action@v3
+      - name: nix run
+        run: nix run -f examples/pinned-fetchurl
