@@ -5,7 +5,7 @@ in
 pkgs.mkShell {
   name = "lix-quick-install-action-devshell";
   packages = with pkgs; [
-    nixfmt-rfc-style
+    nixfmt
     nixd
     npins
   ];
