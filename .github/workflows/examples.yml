@@ -9,14 +9,14 @@ jobs:
   version-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: canidae-solutions/lix-quick-install-action@v3
+      - uses: canidae-solutions/lix-quick-install-action@v4
       - run: nix --version
 
   flakes:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: canidae-solutions/lix-quick-install-action@v3
+      - uses: canidae-solutions/lix-quick-install-action@v4
       - name: nix run
         run: nix run ./examples/flakes
 
@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: canidae-solutions/lix-quick-install-action@v3
+      - uses: canidae-solutions/lix-quick-install-action@v4
       - name: nix run
         run: nix run -f examples/npins
 
@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: canidae-solutions/lix-quick-install-action@v3
+      - uses: canidae-solutions/lix-quick-install-action@v4
       - name: nix run
         run: nix run -f examples/niv
 
@@ -40,6 +40,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: canidae-solutions/lix-quick-install-action@v3
+      - uses: canidae-solutions/lix-quick-install-action@v4
       - name: nix run
         run: nix run -f examples/pinned-fetchurl
