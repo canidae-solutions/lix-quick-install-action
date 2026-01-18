@@ -63,7 +63,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         id: lix-archives
         with:
           name: lix-archives-${{ runner.os }}-${{ runner.arch }}
@@ -97,7 +97,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         id: lix-archives
         with:
           name: lix-archives-${{ runner.os }}-${{ runner.arch }}
@@ -133,19 +133,19 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         with:
           name: lix-archives-Linux-X64
           path: /tmp/archives
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         with:
           name: lix-archives-Linux-ARM64
           path: /tmp/archives
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         with:
           name: lix-archives-macOS-X64
           path: /tmp/archives
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         with:
           name: lix-archives-macOS-ARM64
           path: /tmp/archives
