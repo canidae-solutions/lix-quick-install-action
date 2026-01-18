@@ -5,7 +5,7 @@ author: canidae solutions
 inputs:
   lix_version:
     required: true
-    default: "2.93.3"
+    default: "2.94.0"
     description: |
       The version of Lix that should be installed.
 
