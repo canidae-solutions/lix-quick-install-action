@@ -8,7 +8,7 @@ in
 
 {
   pkgs ? nixpkgs,
-  system ? pkgs.system,
+  system ? pkgs.stdenv.hostPlatform.system,
 }:
 
 let
