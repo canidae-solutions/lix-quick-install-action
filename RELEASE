@@ -1,6 +1,4 @@
-v4.0.0
+v4.0.1
 
 ## changes
-- add support for lix 2.94.0
-- change default lix version from 2.93.3 to 2.94.0
-- drop support for lix 2.91.3 and 2.92.3
+- fix `lix_conf` option not being able to override `experimental-options` (#21, thanks @daylinmorgan!)
