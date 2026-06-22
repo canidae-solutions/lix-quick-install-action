@@ -22,7 +22,7 @@ jobs:
           - macos-15-intel
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: canidae-solutions/lix-quick-install-action@v4
         with:
           lix_archives_url: https://github.com/canidae-solutions/lix-quick-install-action/releases/download/v4.0.0
@@ -61,7 +61,7 @@ jobs:
           - 2.93.3
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/download-artifact@v8
         id: lix-archives
         with:
@@ -94,7 +94,7 @@ jobs:
           - 2.93.3
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/download-artifact@v8
         id: lix-archives
         with:
@@ -130,7 +130,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/download-artifact@v8
         with:
           name: lix-archives-Linux-X64
