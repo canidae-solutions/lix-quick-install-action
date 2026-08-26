@@ -30,8 +30,8 @@ let
   # Currently there's no variation between systems (ie. all systems support all versions), but that may change in the
   # future.
   lixVersionsForSystem = system: [
+    lixPackageSets.lix_2_95.lix
     lixPackageSets.lix_2_94.lix
-    lixPackageSets.lix_2_93.lix
   ];
 in
 rec {
