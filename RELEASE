@@ -1,4 +1,5 @@
-v4.0.1
+v5.0.0
 
 ## changes
-- fix `lix_conf` option not being able to override `experimental-options` (#21, thanks @daylinmorgan!)
+- add support for lix 2.95
+- drop support for lix 2.93
