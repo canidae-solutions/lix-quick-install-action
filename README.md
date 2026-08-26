@@ -13,7 +13,7 @@ getting started only takes one extra line in your workflows:
 
 ```yaml
 steps:
-  - uses: canidae-solutions/lix-quick-install-action@v4
+  - uses: canidae-solutions/lix-quick-install-action@v5
 ```
 
 ## notes
